@@ -1,24 +1,20 @@
-import type { Metadata } from "next";
+'use client'
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 import { Header } from './header'
 import { Footer } from './footer'
 
-export const metadata: Metadata = {
-  title: "E-commerce store",
-};
 
-export default function RootLayout({
- children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-      <html lang="en">
-        <body>
-          <Header/>
-          {children}
-          <Footer/>
-        </body>
-      </html>
-  );
+export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+    return (
+        <html lang="en">
+            <body>
+                <SessionProvider>
+                    <Header/>
+                    {children}
+                    <Footer/>
+                </SessionProvider>
+            </body>
+        </html>
+    );
 }
